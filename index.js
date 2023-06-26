@@ -1,16 +1,28 @@
-import express from 'express';
+const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const Note = require("./src/models/Note")
 
-app.get('/', (req, res) => {
-    res.send('Choo Choo! Welcome to your Express app 🚅');
-})
+const bodyParser = require("body-parser");
+const noteRouter = require("./src/routes/Notes")
 
-app.get("/json", (req, res) => {
-    res.json({"Choo Choo": "Welcome to your Express app 🚅"});
-})
+app.use(bodyParser.urlencoded({extended : false})); //true : Nested object supported, else not.
+app.use(bodyParser.json());
 
-const port = process.env.PORT || 3000;
+mongoose.connect("mongodb+srv://yatharthdixit:yathdi1234@cluster0.mqvkeyl.mongodb.net/?retryWrites=true&w=majority").then(function(){
+    app.get('/', function(req, res){
+        var response = {message : "API Working!"}
+        res.json(response) ; 
+    });
+    app.use("/notes", noteRouter);
+    
+});
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+
+//Home route
+
+const PORT = process.env.PORT || 2222;
+app.listen(PORT, function(){
+    console.log("server started at"+PORT);
+});
+module.exports = app;

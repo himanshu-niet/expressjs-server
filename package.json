@@ -1,19 +1,19 @@
 {
-  "name": "express-simple",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "a simple expressjs app",
+  "description": "",
   "main": "index.js",
-  "type": "module",
-  "author": "Brody Over",
-  "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
-  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.1",
+    "nodemon": "^2.0.22",
+    "vercel": "^30.2.3"
   }
 }
